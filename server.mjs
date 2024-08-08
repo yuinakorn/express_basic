@@ -27,6 +27,21 @@ app.post('/api/v1/users_all', (req, res) => {
     });
 });
 
+app.post('/api/v1/user_by_id/:id', (req, res) => {
+    let id  = req.params.id;
+    const sql = 'SELECT * FROM users WHERE id = ?';
+    db.query(sql, id, (err, result) => {
+        if (err) {
+            res.status(500).send;
+        } else {
+            res.status(200).send(result);
+        }
+    });
+    
+
+});
+
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
